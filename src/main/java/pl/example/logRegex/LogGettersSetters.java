@@ -24,9 +24,11 @@ public class LogGettersSetters {
 	private String blockResult;
 	private String customRuleName;
 	private String destIP;
+	private String httpReferrer;
 	
 	
 	
+
 	public String getSysLogTimeStamp1() {
 		return sysLogTimeStamp1;
 	}
@@ -158,6 +160,12 @@ public class LogGettersSetters {
 	}
 	public void setDestIP(String destIP) {
 		this.destIP = destIP;
+	}
+	public String getHttpReferrer() {
+		return httpReferrer;
+	}
+	public void setHttpReferrer(String httpReferrer) {
+		this.httpReferrer = httpReferrer;
 	}
 	
 
