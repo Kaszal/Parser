@@ -26,7 +26,7 @@ public class logRegexObj implements LogInterface {
 	private static String log; 
 //	private static String log = "May 18 09:31:44 10.51.177.2 mwg: [18/May/2016:09:31:44 +1000] \"pgor\" 10.52.28.227 200 \"CONNECT buttons.reddit.com:443 HTTP/1.1\" \"Forum/Bulletin Boards\" \"Unverified\" \"\" 0 0 \"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36\" \"\" \"0\" \"\" \"Global Whitelist: Sites\" \"198.41.208.137\" \"\""; 
 	
-	LogGettersSetters l1 = new LogGettersSetters();
+	public static LogGettersSetters l1 = new LogGettersSetters();
 	
 	//		KONSTRUKTOR
 	logRegexObj(String log) {
@@ -49,7 +49,7 @@ public class logRegexObj implements LogInterface {
 	
 	//-----------MAIN METHODS---------
 	
-	public void setValues() {
+//	public void setValues() {
 		l1.setSysLogTimeStamp1(sysLogTimeStamp1(log));
 		l1.setProxyIP(proxyIP(log));
 		l1.setProduct(product(log));
@@ -73,7 +73,7 @@ public class logRegexObj implements LogInterface {
 		l1.setCustomRuleName(customRuleName(log));
 		l1.setDestIP(destIP(log));
 		l1.setHttpReferrer(httpReferrer(log));
-	}
+	//}
 	
 	public void getValues() {
 		System.out.println(l1.getSysLogTimeStamp1());
@@ -401,11 +401,29 @@ public class logRegexObj implements LogInterface {
 		
 		log1.setValues();
 		
-		LogGettersSetters l1 = new LogGettersSetters();
-		
 		System.out.println(l1.getSysLogTimeStamp1());
-		
-		log1.getValues();
+		System.out.println(l1.getProxyIP());
+		System.out.println(l1.getProduct());
+		System.out.println(l1.getEventTimeStamp());
+		System.out.println(l1.getUser());
+		System.out.println(l1.getSourceIP());
+		System.out.println(l1.getStatus());
+		System.out.println(l1.getHttpMethod());			
+		System.out.println(l1.getHttpProtocol());
+		System.out.println(l1.getUrl());					
+		System.out.println(l1.getHttpVersion());
+		System.out.println(l1.getHttpCategory());
+		System.out.println(l1.getRisk());
+		System.out.println(l1.getHttpContentType());			
+		System.out.println(l1.getBytesIN());
+		System.out.println(l1.getBytesOUT());
+		System.out.println(l1.getHttpUserAgent());			// DYNAMIC VALUE! (TODO)
+		System.out.println(l1.getSignature());
+		System.out.println(l1.getAction());
+		System.out.println(l1.getBlockResult());
+		System.out.println(l1.getCustomRuleName());
+		System.out.println(l1.getDestIP());
+		System.out.println(l1.getHttpReferrer());
 		
 	}
 
