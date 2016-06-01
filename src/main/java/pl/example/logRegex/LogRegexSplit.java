@@ -2,17 +2,28 @@ package pl.example.logRegex;
 
 public class LogRegexSplit {
 	
-	public static void main(String[] args) {
-		
-		String log = "May 18 09:31:44 10.51.177.2 mwg: [18/May/2016:09:31:44 +1000] \"pgor\" 10.52.28.227 200 \"CONNECT buttons.reddit.com:443 HTTP/1.1\" \"Forum/Bulletin Boards\" \"Unverified\" \"\" 0 0 \"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36\" \"\" \"0\" \"\" \"Global Whitelist: Sites\" \"198.41.208.137\" \"\"";
-			//divide log by white characters
+	private String log;
+	
+	//----KONSTRUKTOR----
+	LogRegexSplit(String log) {
+	this.log = log;
+	}
+	
 		String[] tmp = log.split("\\s+");
-		
-		LogGettersSetters log1 = new LogGettersSetters();
+		public static LogGettersSetters log1 = new LogGettersSetters();
 		
 		removeTags(tmp);
 		
-		//					GROUPS LOG
+		
+		 void removeTags(String[] tmp) {
+			for(int i=0; i < tmp.length; i++) {
+				if(!tmp[i].equals("\"\""))					// remove unnecessary tags ""
+				tmp[i] = tmp[i].replaceAll("\"", "");
+				//System.out.println(tmp[i]);			// <- line to see log without groups
+			}
+		}
+		 
+		//			GROUPS LOG
 		log1.setSysLogTimeStamp1(tmp[0]+" "+tmp[1]+" "+tmp[2]);
 		log1.setProxyIP(tmp[3]);
 		log1.setProduct(tmp[4]);
@@ -36,6 +47,16 @@ public class LogRegexSplit {
 		log1.setCustomRuleName(tmp[33]+" "+tmp[34]+" "+tmp[35]);
 		log1.setDestIP(tmp[36]);
 		log1.setHttpReferrer(tmp[37]);
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		String log = "May 18 09:31:44 10.51.177.2 mwg: [18/May/2016:09:31:44 +1000] \"pgor\" 10.52.28.227 200 \"CONNECT buttons.reddit.com:443 HTTP/1.1\" \"Forum/Bulletin Boards\" \"Unverified\" \"\" 0 0 \"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36\" \"\" \"0\" \"\" \"Global Whitelist: Sites\" \"198.41.208.137\" \"\"";
+			//divide log by white characters
+		
+		LogRegexSplit logSplit = new LogRegexSplit(log);
 		
 		System.out.println("");
 		System.out.println(log1.getSysLogTimeStamp1());
@@ -64,13 +85,7 @@ public class LogRegexSplit {
 	
 	}
 
-	private static void removeTags(String[] tmp) {
-		for(int i=0; i < tmp.length; i++) {
-			if(!tmp[i].equals("\"\""))					// remove unnecessary tags ""
-			tmp[i] = tmp[i].replaceAll("\"", "");
-			//System.out.println(tmp[i]);			// <- line to see log without groups
-		}
-	}
+
 	
 	
 } 
