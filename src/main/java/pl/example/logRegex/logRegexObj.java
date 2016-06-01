@@ -28,7 +28,7 @@ public class logRegexObj implements LogInterface {
 	
 	public static LogGettersSetters l1 = new LogGettersSetters();
 	
-	//		KONSTRUKTOR
+	//		KONSTRUKTOR--------S
 	logRegexObj(String log) {
 		this.log = log;
 	}
@@ -49,7 +49,7 @@ public class logRegexObj implements LogInterface {
 	
 	//-----------MAIN METHODS---------
 	
-//	public void setValues() {
+	public void setValues() {
 		l1.setSysLogTimeStamp1(sysLogTimeStamp1(log));
 		l1.setProxyIP(proxyIP(log));
 		l1.setProduct(product(log));
@@ -73,7 +73,7 @@ public class logRegexObj implements LogInterface {
 		l1.setCustomRuleName(customRuleName(log));
 		l1.setDestIP(destIP(log));
 		l1.setHttpReferrer(httpReferrer(log));
-	//}
+	}
 	
 	public void getValues() {
 		System.out.println(l1.getSysLogTimeStamp1());
