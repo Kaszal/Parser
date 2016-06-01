@@ -5,21 +5,14 @@ public class LogRegexSplit {
 	public static void main(String[] args) {
 		
 		String log = "May 18 09:31:44 10.51.177.2 mwg: [18/May/2016:09:31:44 +1000] \"pgor\" 10.52.28.227 200 \"CONNECT buttons.reddit.com:443 HTTP/1.1\" \"Forum/Bulletin Boards\" \"Unverified\" \"\" 0 0 \"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36\" \"\" \"0\" \"\" \"Global Whitelist: Sites\" \"198.41.208.137\" \"\"";
-		
+			//divide log by white characters
 		String[] tmp = log.split("\\s+");
-		
-		/*for(int i=1; i<=23; i++){
-			LogGettersSetters log.i = new LogGettersSetters();
-		}*/
 		
 		LogGettersSetters log1 = new LogGettersSetters();
 		
-		for(int i=0; i < tmp.length; i++) {
-			if(!tmp[i].equals("\"\""))					// usuwamy tylko zbedne ""
-			tmp[i] = tmp[i].replaceAll("\"", "");
-			System.out.println(tmp[i]);
-		}
+		removeTags(tmp);
 		
+		//					GROUPS LOG
 		log1.setSysLogTimeStamp1(tmp[0]+" "+tmp[1]+" "+tmp[2]);
 		log1.setProxyIP(tmp[3]);
 		log1.setProduct(tmp[4]);
@@ -52,16 +45,16 @@ public class LogRegexSplit {
 		System.out.println(log1.getUser());
 		System.out.println(log1.getSourceIP());
 		System.out.println(log1.getStatus());
-		System.out.println(log1.getHttpMethod());			// erase "...
+		System.out.println(log1.getHttpMethod());			
 		System.out.println(log1.getHttpProtocol());
-		System.out.println(log1.getUrl());					// erase "...
+		System.out.println(log1.getUrl());					
 		System.out.println(log1.getHttpVersion());
 		System.out.println(log1.getHttpCategory());
 		System.out.println(log1.getRisk());
 		System.out.println(log1.getHttpContentType());			
 		System.out.println(log1.getBytesIN());
 		System.out.println(log1.getBytesOUT());
-		System.out.println(log1.getHttpUserAgent());			// ZMIENNA WARTOSC!
+		System.out.println(log1.getHttpUserAgent());			// DYNAMIC VALUE! (TODO)
 		System.out.println(log1.getSignature());
 		System.out.println(log1.getAction());
 		System.out.println(log1.getBlockResult());
@@ -69,6 +62,14 @@ public class LogRegexSplit {
 		System.out.println(log1.getDestIP());
 		System.out.println(log1.getHttpReferrer());
 	
+	}
+
+	private static void removeTags(String[] tmp) {
+		for(int i=0; i < tmp.length; i++) {
+			if(!tmp[i].equals("\"\""))					// remove unnecessary tags ""
+			tmp[i] = tmp[i].replaceAll("\"", "");
+			//System.out.println(tmp[i]);			// <- line to see log without groups
+		}
 	}
 	
 	
